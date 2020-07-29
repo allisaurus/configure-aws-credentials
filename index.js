@@ -130,10 +130,10 @@ async function exportAccountId(maskAccountId, region) {
   const sts = getStsClient(region);
   const identity = await sts.getCallerIdentity().promise();
   const accountId = identity.Account;
-  core.setOutput('aws-account-id', accountId);
   if (!maskAccountId || maskAccountId.toLowerCase() == 'true') {
     core.setSecret(accountId);
   }
+  core.setOutput('aws-account-id', accountId);
   return accountId;
 }
 
